@@ -10,6 +10,7 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import org.junit.Assert;
+import org.junit.jupiter.api.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -20,7 +21,7 @@ import java.net.URL;
 public class CalculatorOperationsTest {
     //AppiumDriver<MobileElement> driver;
 
-    @Test
+    @BeforeEach
     public void addTest() throws MalformedURLException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Pixel 3");
@@ -102,7 +103,7 @@ public class CalculatorOperationsTest {
 
     }
 
-    @Test
+    @BeforeEach
     public void cleanUp(){
         //driver.closeApp();
         System.out.println("TEST BİTTİ");
