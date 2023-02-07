@@ -21,7 +21,7 @@ public class CalculatorOperationsTest {
     //AppiumDriver<MobileElement> driver;
 
     @Test
-    public void test1() throws MalformedURLException, InterruptedException {
+    public void addTest() throws MalformedURLException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Pixel 3");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
@@ -38,7 +38,8 @@ public class CalculatorOperationsTest {
         Thread.sleep(1000);
 
 
-        //BU İŞLEMİ YAP -> 4+5= 9
+        //TOPLAMA İŞLEMİ YAP
+        // 4+5= 9
         MobileElement fourElm=driver.findElement(By.id("com.google.android.calculator:id/digit_4"));
         fourElm.click();
 
@@ -52,17 +53,52 @@ public class CalculatorOperationsTest {
         equalElm.click();
 
         MobileElement resultElm=driver.findElement(MobileBy.id("com.google.android.calculator:id/result_final"));
-        System.out.println("resultElm = " + resultElm);
+
+        System.out.println("resultElm = " + resultElm.getText());
 
 
 
         Thread.sleep(2000);
         //close the App
-        //driver.closeApp();
+        driver.closeApp();
     }
 
     @Test
-    public void addTest(){
+    public void divideTest() throws InterruptedException, MalformedURLException {
+        //BÖLME İŞLEMİ YAP
+        // 15/5= 3
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("deviceName", "Pixel 3");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+
+        //App=Calculator
+        capabilities.setCapability(MobileCapabilityType.APP,"https://cybertek-appium.s3.amazonaws.com/calculator.apk");
+        URL url = new URL("http://localhost:4723/wd/hub");
+
+        //launch AppiumDriver
+        AppiumDriver<MobileElement> driver;
+        driver = new AndroidDriver<MobileElement>(url, capabilities);
+        Thread.sleep(1000);
+
+        MobileElement oneElm=driver.findElement(By.id("com.google.android.calculator:id/digit_1"));
+        oneElm.click();
+
+        MobileElement fiveElm=driver.findElement(By.id("com.google.android.calculator:id/digit_5"));
+        fiveElm.click();
+
+        MobileElement divideElm=driver.findElement(MobileBy.AccessibilityId("divide"));
+        divideElm.click();
+
+        fiveElm.click();
+
+        MobileElement equalElm=driver.findElement(MobileBy.AccessibilityId("equals"));
+        equalElm.click();
+
+        MobileElement resultElm=driver.findElement(MobileBy.id("com.google.android.calculator:id/result_final"));
+        System.out.println("resultElm = " + resultElm.getText());
 
     }
 
@@ -73,19 +109,3 @@ public class CalculatorOperationsTest {
     }
 
 }
-
-    /*DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "Pixel 3");
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10");
-                capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-
-                //App=Calculator
-                capabilities.setCapability(MobileCapabilityType.APP,"https://cybertek-appium.s3.amazonaws.com/calculator.apk");
-                //App=Etsy
-                //capabilities.setCapability(MobileCapabilityType.APP,"https://cybertek-appium.s3.amazonaws.com/etsy.apk");
-                URL url = new URL("http://localhost:4723/wd/hub");
-
-                //launch AppiumDriver
-                driver = new AndroidDriver<MobileElement>(url, capabilities);
-        Thread.sleep(3000);*/
